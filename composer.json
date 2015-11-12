@@ -1,8 +1,8 @@
 {
-    "name": "2amigos/yii2-file-input-widget",
+    "name": "valiant/yii2-file-input-widget",
     "description": "Jasny file input widget for the Yii framework",
     "keywords": [
-        "2amigos",
+        "valiant",
         "yii",
         "yii2",
         "yii 2",
@@ -11,7 +11,7 @@
     ],
     "type": "yii2-extension",
     "license": "BSD-3-Clause",
-    "homepage": "https://github.com/2amigos//yii2-file-input-widget",
+    "homepage": "https://github.com/valiant/yii2-file-input-widget",
     "authors": [
         {
             "name": "Alexander Kochetov",
@@ -36,7 +36,7 @@
     },
     "autoload": {
         "psr-4": {
-            "dosamigos\\fileinput\\": "src"
+            "valiant\\fileinput\\": "src"
         }
     },
     "extra": {

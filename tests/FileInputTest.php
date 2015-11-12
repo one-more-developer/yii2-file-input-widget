@@ -7,7 +7,7 @@
 
 namespace tests;
 
-use dosamigos\fileinput\FileInput;
+use valiant\fileinput\FileInput;
 use tests\models\Model;
 use Yii;
 

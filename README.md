@@ -32,7 +32,7 @@ to the `require` section of your `composer.json` file.
 Using a model:
 
 ```
-use dosamigos\fileinput\FileInput;
+use valiant\fileinput\FileInput;
 
 <?=FileInput::widget([
     'model' => $model,
@@ -50,7 +50,7 @@ We have included the [improved and multiple file upload version from Krajee](htt
 
 ```
 
-<?= $form->field($model, 'code')->widget(\dosamigos\fileinput\BootstrapFileInput::className(), [
+<?= $form->field($model, 'code')->widget(\valiant\fileinput\BootstrapFileInput::className(), [
     'options' => ['accept' => 'image/*', 'multiple' => true],
     'clientOptions' => [
         'previewFileType' => 'text',

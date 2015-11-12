@@ -1,6 +1,6 @@
 <?php
 
-use dosamigos\fileinput\BootstrapFileInput;
+use valiant\fileinput\BootstrapFileInput;
 use yii\web\JsExpression;
 
 /* @var $this yii\web\View */
