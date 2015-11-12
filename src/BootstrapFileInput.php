@@ -7,10 +7,10 @@
 
 namespace dosamigos\fileinput;
 
+use Yii;
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\widgets\InputWidget;
-use Yii;
 
 /**
  * BootstrapFileInput widget renders the improved and amazing plugin version from Krajee. It supports multiple file
@@ -58,15 +58,41 @@ class BootstrapFileInput extends InputWidget
 
         $id = $this->options['id'];
 
-        $options = !empty($this->clientOptions) ? Json::encode($this->clientOptions) : '';
+        $options = !empty($this->clientOptions) ? $this->prepareClientOptions() : '';
 
-        $js[] = ";jQuery('#$id').fileinput({$options});";
+        $js = [
+            'jQuery(\'#' . $id . '\').fileinput(' . $options . ');'
+        ];
 
         if (!empty($this->clientEvents)) {
             foreach ($this->clientEvents as $event => $handler) {
-                $js[] = ";jQuery('#$id').on('$event', $handler);";
+                $js[] = 'jQuery(\'#' . $id . '\').on(\'' . $event . '\', ' . $handler . ');';
             }
         }
-        $view->registerJs(implode("\n", $js));
+        $view->registerJs(implode(PHP_EOL, $js));
+    }
+
+    /**
+     * Prepare client option.
+     *
+     * @return string
+     */
+    protected function prepareClientOptions()
+    {
+        if (is_array($this->clientOptions)) {
+            $result = [];
+            foreach ($this->clientOptions as $optionName => $optionValue) {
+                if ($optionValue instanceof \Closure) {
+                    $result[] = sprintf('%s: %s', $optionName, $optionValue());
+                } else {
+                    $result[] = sprintf('%s: %s', $optionName, Json::encode($optionValue));
+                }
+            }
+            $result = implode(', ', $result);
+        } else {
+            $result = Json::encode($this->clientOptions);
+        }
+
+        return sprintf('{%s}', $result);
     }
 }
